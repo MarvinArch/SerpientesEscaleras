@@ -118,6 +118,7 @@ public class Inicial extends javax.swing.JFrame {
         reg= new Registro(this, true);
         reg.setVisible(true);
         
+        
     }//GEN-LAST:event_jButtonNJugMouseClicked
 
     /**

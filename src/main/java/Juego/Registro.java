@@ -5,6 +5,13 @@
  */
 package Juego;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alpha
@@ -52,6 +59,11 @@ public class Registro extends javax.swing.JDialog {
         });
 
         jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonRegistrarMouseClicked(evt);
+            }
+        });
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +144,22 @@ public class Registro extends javax.swing.JDialog {
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistrarMouseClicked
+        File ruta = new File("Recursos/Aiourssu.txt");   
+        try {
+            BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ruta,true), "utf-8"));
+            pw.write("\n"+"Usuario("+jTextFieldNombre.getText()+","+jTextFieldNickname.getText()+","+0+","+0+","+0+")");
+            
+            pw.close();
+            this.dispose();
+                    
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+            
+        
+    }//GEN-LAST:event_jButtonRegistrarMouseClicked
 
     /**
      * @param args the command line arguments
