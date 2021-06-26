@@ -10,7 +10,7 @@ package Juego;
  * @author alpha
  */
 public class Inicial extends javax.swing.JFrame {
-
+    Registro reg;
     /**
      * Creates new form Inicial
      */
@@ -41,6 +41,11 @@ public class Inicial extends javax.swing.JFrame {
         jButtonNuevo.setText("Nuevo Juego");
 
         jButtonNJug.setText("Nuevo Jugador");
+        jButtonNJug.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonNJugMouseClicked(evt);
+            }
+        });
 
         jButtonEsta.setText("Estadisticas");
 
@@ -108,6 +113,12 @@ public class Inicial extends javax.swing.JFrame {
     private void jButtonSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonSalirMouseClicked
         System.exit(0);
     }//GEN-LAST:event_jButtonSalirMouseClicked
+    // Registro de Usuarios
+    private void jButtonNJugMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNJugMouseClicked
+        reg= new Registro(this, true);
+        reg.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonNJugMouseClicked
 
     /**
      * @param args the command line arguments
