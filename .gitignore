@@ -1,0 +1,4 @@
+/build
+/lib
+.class*
+.jar*
