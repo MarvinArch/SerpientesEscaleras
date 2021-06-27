@@ -48,6 +48,11 @@ public class JugadoresPartida extends javax.swing.JDialog {
         Escoger.setText("Escoger Jugadores ");
 
         jButton1.setText("jButton1");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelfondoLayout = new javax.swing.GroupLayout(Panelfondo);
         Panelfondo.setLayout(PanelfondoLayout);
@@ -92,6 +97,13 @@ public class JugadoresPartida extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        for (int i = 0; i < cantidadJugadores; i++) {
+            NuevoJuego.definirJugadoresPartida(jugadores[i].getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
     
     public void CrearComboBox(int cantidad){
         for (int i = 0; i < cantidad; i++) {

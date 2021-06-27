@@ -7,6 +7,7 @@ package NuevoJuego;
 
 import Juego.Inicial;
 import Usuarios.ArregloJugadores;
+import Usuarios.Jugador;
 
 /**
  *
@@ -16,6 +17,9 @@ public class NuevoJuego {
     private static ArregloJugadores var = new ArregloJugadores();
     private JugadoresPartida seleccion = new JugadoresPartida(true);
     private static int cantidadJugadores;
+    private static int contador; 
+    private int jugadores;
+    private static Jugador[] partida;
     
     public NuevoJuego(){
         
@@ -32,6 +36,9 @@ public class NuevoJuego {
     }
     
     public void IniciarJuago(int cantidadJuga){
+        contador=0;
+        jugadores=cantidadJuga;
+        partida= new Jugador[cantidadJuga];
         seleccion.CrearLista(cantidadJuga);
         seleccion.setVisible(true);
     }
@@ -42,7 +49,14 @@ public class NuevoJuego {
        var.AgregarUsuario(nombre, nickname);
    }
    // se definen los jugadores que entraran al juego
-   public void definirJugadoresPartida(){
+   public static void definirJugadoresPartida(String nickname){
+       for (int i = 0; i < cantidadJugadores; i++) {
+           if (nombre(i).equalsIgnoreCase(nickname)) {
+               partida[contador]=var.Jugador(i);
+               contador++;
+           }
+       }
+       
    }
-    
+   
 }

@@ -76,5 +76,10 @@ public class ArregloJugadores {
     public void AgregarUsuario(String nombre, String nickname){
         juga.add(new Jugador(nombre,nickname,0,0,0));
     }
+    
+    public Jugador Jugador(int posicion){
+        Jugador dev= juga.get(posicion);
+        return dev;
+    }
    
 }
