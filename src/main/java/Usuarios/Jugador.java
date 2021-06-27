@@ -15,6 +15,7 @@ public class Jugador {
     private int ganadas;
     private int perdidas;
     private int jugadas;
+    private int turno;
 
     public Jugador(String nombre, String nickName, int ganadas, int perdidas, int jugadas) {
         this.nombre = nombre;
