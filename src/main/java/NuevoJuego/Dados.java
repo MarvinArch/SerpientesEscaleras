@@ -32,15 +32,15 @@ public class Dados extends javax.swing.JPanel implements Runnable {
         this.mover=mover;
     }
     
-    public void IniciarDado(){
+    public void IniciarDado(int num1, int num2){
         dado1.setBounds(0, 0, 80, 80);
         dado2.setBounds(94, 0, 80, 80);
         this.add(dado1);
         this.add(dado2);
-        ImageIcon Imagen1= new ImageIcon("Imagenes/caras1.jpg");
+        ImageIcon Imagen1= new ImageIcon("Imagenes/caras"+num1+".jpg");
         Icon Fondo1= new ImageIcon(Imagen1.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
         dado1.setIcon(Fondo1);
-        ImageIcon Imagen2= new ImageIcon("Imagenes/caras1.jpg");
+        ImageIcon Imagen2= new ImageIcon("Imagenes/caras"+num2+".jpg");
         Icon Fondo2= new ImageIcon(Imagen2.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
         dado2.setIcon(Fondo2);
     }
@@ -70,15 +70,15 @@ public class Dados extends javax.swing.JPanel implements Runnable {
     public void run() {
         while(mover==true){
             int tmp1=(int)(Math.random()*6)+1;
-            ImageIcon Imagen1= new ImageIcon("Imagenes/caras"+tmp1+"jpg");
+            ImageIcon Imagen1= new ImageIcon("Imagenes/caras"+tmp1+".jpg");
             Icon Fondo1= new ImageIcon(Imagen1.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
             dado1.setIcon(Fondo1);
             int tmp2=(int)(Math.random()*6)+1;
-            ImageIcon Imagen2= new ImageIcon("Imagenes/caras"+tmp2+"jpg");
-            Icon Fondo2= new ImageIcon(Imagen2.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
+            ImageIcon Imagen2= new ImageIcon("Imagenes/caras"+tmp2+".jpg");
+            Icon Fondo2= new ImageIcon(Imagen2.getImage().getScaledInstance(80, 80, Image.SCALE_DEFAULT));
             dado2.setIcon(Fondo2);
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -16,14 +16,17 @@ public class VentanaJuego extends javax.swing.JFrame {
     private int accionDado=0;
     private boolean movimiento=false;
     private Dados dad= new Dados();
+    Thread hilo1;
     /**
      * Creates new form VentanaJuego
      */
     public VentanaJuego() {
         initComponents();
         jPanelInfo.add(dad);
-        dad.setBounds(0,200,175,80);
-        dad.IniciarDado();
+        dad.setBounds(20,150,175,80);
+        dad.IniciarDado(1,1);
+        
+        
     }
 
     /**
@@ -65,16 +68,16 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanelInfo.setLayout(jPanelInfoLayout);
         jPanelInfoLayout.setHorizontalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonDados)
-                .addGap(49, 49, 49))
             .addGroup(jPanelInfoLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(Dado1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Dado2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDados)
+                .addGap(48, 48, 48))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,9 +86,9 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Dado1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Dado2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(112, 112, 112)
+                .addGap(87, 87, 87)
                 .addComponent(jButtonDados)
-                .addGap(321, 321, 321))
+                .addGap(346, 346, 346))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,8 +118,16 @@ public class VentanaJuego extends javax.swing.JFrame {
     private void jButtonDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDadosMouseClicked
         if (accionDado==0) {
             accionDado=1;
+            dad.setMover(true);
+            hilo1=new Thread(dad);
+            hilo1.start();
         }else if(accionDado==1){
-            accionDado=1;
+            accionDado=0;
+            hilo1.stop();
+            dad.setMover(false);
+            int tmp1= (int)(Math.random()*6)+1;
+            int tmp2= (int)(Math.random()*6)+1;
+            dad.IniciarDado(tmp1,tmp2);
         }
     }//GEN-LAST:event_jButtonDadosMouseClicked
   
