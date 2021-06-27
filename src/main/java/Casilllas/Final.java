@@ -12,6 +12,10 @@ import java.awt.Color;
  * @author alpha
  */
 public class Final extends Casilla{
+
+    public Final() {
+        this.tipo="Casilla Final";
+    }
     @Override
     public void PintarFondo(){
         this.add(fondo);

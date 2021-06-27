@@ -6,16 +6,27 @@
 package Casilllas;
 
 import java.awt.Color;
+import javax.swing.JLabel;
 
 /**
  *
  * @author alpha
  */
 public class Inicio extends Casilla{
+    private JLabel inicio= new JLabel();
+    public Inicio() {
+        this.tipo="Casilla Inicio";
+        this.add(inicio);
+        inicio.setBounds(5, 5, 50, 25);
+        inicio.setText("Inicio");
+    }
+
+    
     
     @Override
     public void PintarFondo(){
         this.add(fondo);
+        
         fondo.setBackground(Color.green);
     }
 }

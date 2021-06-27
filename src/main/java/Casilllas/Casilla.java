@@ -7,12 +7,13 @@ package Casilllas;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
  * @author alpha
  */
-public class Casilla extends JLabel{
+public class Casilla extends JPanel{
     protected int Numero;
     protected boolean ocupado;
     protected String tipo;
@@ -22,5 +23,10 @@ public class Casilla extends JLabel{
         this.add(fondo);
         fondo.setBackground(Color.red);
     }
+
+    public Casilla() {
+       this.tipo="Casilla Normal";
+    }
+
     
 }

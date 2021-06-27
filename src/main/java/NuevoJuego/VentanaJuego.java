@@ -5,6 +5,7 @@
  */
 package NuevoJuego;
 
+import Casilllas.*;
 import java.awt.Color;
 
 /**
@@ -16,6 +17,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     private int accionDado=0;
     private boolean movimiento=false;
     private Dados dad= new Dados();
+    private Casilla[][] tab;
+    private int ancho;
+    private int alto;
     Thread hilo1;
     /**
      * Creates new form VentanaJuego
@@ -24,9 +28,52 @@ public class VentanaJuego extends javax.swing.JFrame {
         initComponents();
         jPanelInfo.add(dad);
         dad.setBounds(20,150,175,80);
+        dibujarArreglo(10,10);
         dad.IniciarDado(1,1);
+        jPanelTablero.setBackground(Color.yellow);
         
         
+        
+    }
+    
+    public void dibujarArreglo(int columnas, int filas){
+        ancho=Math.abs(750/columnas);
+        alto =Math.abs(670/filas);
+        jPanelTablero.setBounds(0, 0, 750, 675);
+        int inicioX=0;
+        int inicioY=670-alto;
+        tab = new Casilla[filas][columnas];
+        CasillasInicioFinal(columnas, filas);
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (tab[i][j]==null) {
+                    tab[i][j]=new Casilla();
+                    tab[i][j].setBackground(Color.blue);
+                }
+                jPanelTablero.add(tab[i][j]);
+                tab[i][j].setBounds(inicioX, inicioY, ancho, alto);
+                
+                if (i%2==0) {
+                    inicioX+=ancho;
+                }else{
+                    inicioX-=ancho;
+                }
+                if (j==(columnas-1) && i%2==0) {
+                    inicioX=750-ancho;
+                }else if(j==(columnas-1) && i%2!=0){
+                    inicioX=0;
+                }
+            }
+            inicioY-=alto;
+        }
+        
+    }
+    
+    public void CasillasInicioFinal(int columnas, int filas){
+        tab[0][0]= new Inicio();
+        tab[0][0].setBackground(Color.green);
+        tab[filas-1][columnas-1]= new Final();
+        tab[filas-1][columnas-1].setBackground(Color.red);
     }
 
     /**
@@ -107,8 +154,8 @@ public class VentanaJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
