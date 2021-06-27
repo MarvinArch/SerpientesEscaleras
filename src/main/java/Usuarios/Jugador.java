@@ -27,4 +27,45 @@ public class Jugador {
     public Jugador(){
         
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public int getGanadas() {
+        return ganadas;
+    }
+
+    public void setGanadas(int ganadas) {
+        this.ganadas = ganadas;
+    }
+
+    public int getPerdidas() {
+        return perdidas;
+    }
+
+    public void setPerdidas(int perdidas) {
+        this.perdidas = perdidas;
+    }
+
+    public int getJugadas() {
+        return jugadas;
+    }
+
+    public void setJugadas(int jugadas) {
+        this.jugadas = jugadas;
+    }
+    
 }

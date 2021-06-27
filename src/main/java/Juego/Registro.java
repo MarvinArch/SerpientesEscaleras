@@ -5,6 +5,7 @@
  */
 package Juego;
 
+import NuevoJuego.NuevoJuego;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -149,7 +150,8 @@ public class Registro extends javax.swing.JDialog {
         File ruta = new File("Recursos/Aiourssu.txt");   
         try {
             BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ruta,true), "utf-8"));
-            pw.write("\n"+"Usuario("+jTextFieldNombre.getText()+","+jTextFieldNickname.getText()+","+0+","+0+","+0+")");
+            pw.write("Usuario("+jTextFieldNombre.getText()+","+jTextFieldNickname.getText()+","+0+","+0+","+0+")"+"\n");
+            NuevoJuego.AgregarUsuario(jTextFieldNombre.getText(), jTextFieldNickname.getText());
             
             pw.close();
             this.dispose();

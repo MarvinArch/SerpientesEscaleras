@@ -5,17 +5,23 @@
  */
 package Juego;
 
+import NuevoJuego.NuevoJuego;
+import Usuarios.ArregloJugadores;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alpha
  */
 public class Inicial extends javax.swing.JFrame {
     Registro reg;
+    NuevoJuego juego;
     /**
      * Creates new form Inicial
      */
     public Inicial() {
         initComponents();
+        
     }
 
     /**
@@ -39,6 +45,11 @@ public class Inicial extends javax.swing.JFrame {
         jLabel1.setText("Serpientes y Escaleras");
 
         jButtonNuevo.setText("Nuevo Juego");
+        jButtonNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonNuevoMouseClicked(evt);
+            }
+        });
 
         jButtonNJug.setText("Nuevo Jugador");
         jButtonNJug.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,6 +131,13 @@ public class Inicial extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButtonNJugMouseClicked
+
+    private void jButtonNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNuevoMouseClicked
+        System.gc();
+        int cantidadJuga= Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese cantidad de Jugadores para al partida"));
+        juego = new NuevoJuego();
+        juego.IniciarJuago(cantidadJuga);
+    }//GEN-LAST:event_jButtonNuevoMouseClicked
 
     /**
      * @param args the command line arguments
