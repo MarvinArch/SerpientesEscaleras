@@ -7,6 +7,7 @@ package Juego;
 
 import NuevoJuego.NuevoJuego;
 import Usuarios.ArregloJugadores;
+import Usuarios.Buscador;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,6 +60,11 @@ public class Inicial extends javax.swing.JFrame {
         });
 
         jButtonEsta.setText("Estadisticas");
+        jButtonEsta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEstaMouseClicked(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,6 +143,11 @@ public class Inicial extends javax.swing.JFrame {
         juego = new NuevoJuego();
         juego.IniciarJuago(cantidadJuga);
     }//GEN-LAST:event_jButtonNuevoMouseClicked
+
+    private void jButtonEstaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstaMouseClicked
+        // TODO add your handling code here:
+        Buscador.Archivo();
+    }//GEN-LAST:event_jButtonEstaMouseClicked
 
     /**
      * @param args the command line arguments
