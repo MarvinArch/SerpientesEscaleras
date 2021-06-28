@@ -5,6 +5,11 @@
  */
 package Usuarios;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import javax.swing.JFileChooser;
 
 /**
@@ -20,5 +25,22 @@ public class Buscador {
        var.showOpenDialog(null);
        archivo = var.getSelectedFile().toString();
        return archivo;
+    }
+    
+    public static void EscribirUsuarioArchivo(String nombre, String nickname, int ganadas, int perdidas, int jugadas){
+        File ruta = new File("Recursos/Aiourssu.txt");   
+        try {
+            BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ruta,true), "utf-8"));
+            pw.write("Usuario("+nombre+","+nickname+","+ganadas+","+perdidas+","+jugadas+")"+"\n");
+            pw.close();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+    }
+    
+    public static void LimpiarArchivo(){
+        File ruta = new File("Recursos/Aiourssu.txt");
+        
+        ruta.delete();
     }
 }

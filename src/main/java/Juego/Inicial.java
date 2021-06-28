@@ -146,7 +146,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void jButtonEstaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEstaMouseClicked
         // TODO add your handling code here:
-        Buscador.Archivo();
+        
     }//GEN-LAST:event_jButtonEstaMouseClicked
 
     /**

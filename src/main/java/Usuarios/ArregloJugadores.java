@@ -75,11 +75,19 @@ public class ArregloJugadores {
     
     public void AgregarUsuario(String nombre, String nickname){
         juga.add(new Jugador(nombre,nickname,0,0,0));
+        Buscador.LimpiarArchivo();
+        ReEscribirArchivo();
     }
     
     public Jugador Jugador(int posicion){
         Jugador dev= juga.get(posicion);
         return dev;
+    }
+    
+    public void ReEscribirArchivo(){
+        for (int i = 0; i < juga.size(); i++) {
+            Buscador.EscribirUsuarioArchivo(juga.get(i).getNombre(), juga.get(i).getNickName(), juga.get(i).getGanadas(), juga.get(i).getPerdidas(), juga.get(i).getJugadas());
+        }
     }
    
 }

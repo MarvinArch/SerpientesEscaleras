@@ -147,20 +147,8 @@ public class Registro extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonRegistrarMouseClicked
-        File ruta = new File("Recursos/Aiourssu.txt");   
-        try {
-            BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ruta,true), "utf-8"));
-            pw.write("Usuario("+jTextFieldNombre.getText()+","+jTextFieldNickname.getText()+","+0+","+0+","+0+")"+"\n");
-            NuevoJuego.AgregarUsuario(jTextFieldNombre.getText(), jTextFieldNickname.getText());
-            
-            pw.close();
-            this.dispose();
-                    
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-            
-        
+        NuevoJuego.AgregarUsuario(jTextFieldNombre.getText(), jTextFieldNickname.getText());
+        this.dispose();
     }//GEN-LAST:event_jButtonRegistrarMouseClicked
 
     /**

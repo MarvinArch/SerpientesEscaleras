@@ -8,6 +8,7 @@ package NuevoJuego;
 import Casilllas.*;
 import Usuarios.Jugador;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -117,14 +118,20 @@ public class VentanaJuego extends javax.swing.JFrame {
                     tab[i][j].add(jugadores[turno]);
                     jugadores[turno].setPosicion(jugadores[turno].getPosicion()+casillas);
                     jugadores[turno].EstablecerImagen(turno+1);
+                    if (jugadores[turno].getPosicion()>=(filas*columnas)-1) DeclararGanador(turno);
                 }
             }
         }
+        
+        
         turno++;
-        if (turno==jugadores.length) {
-            turno=0;
-        }
+        if (turno==jugadores.length) turno=0;
         labelTurno.setText(jugadores[turno].getNombre());
+    }
+    
+    public void DeclararGanador(int ganador){
+        System.out.println("Entro??");
+        JOptionPane.showMessageDialog(this, "El ganador a sido "+jugadores[ganador].getNombre());
     }
     
     
@@ -143,7 +150,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         jButtonDados = new javax.swing.JButton();
         labelTurno = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout jPanelTableroLayout = new javax.swing.GroupLayout(jPanelTablero);
         jPanelTablero.setLayout(jPanelTableroLayout);

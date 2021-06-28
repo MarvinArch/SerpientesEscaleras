@@ -22,6 +22,7 @@ public class Jugador extends JLabel{
     private int jugadas;
     private int posicion;
     private int turno;
+    private boolean ganador;
 
     public Jugador(String nombre, String nickName, int ganadas, int perdidas, int jugadas) {
         this.nombre = nombre;
@@ -92,6 +93,14 @@ public class Jugador extends JLabel{
     
     public void EliminarImagen(){
         this.setIcon(null);
+    }
+
+    public boolean isGanador() {
+        return ganador;
+    }
+
+    public void setGanador(boolean ganador) {
+        this.ganador = ganador;
     }
     
 }
