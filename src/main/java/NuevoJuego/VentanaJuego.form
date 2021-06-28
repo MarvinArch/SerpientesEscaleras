@@ -66,16 +66,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                  <Component id="Dado1" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="Dado2" min="-2" pref="80" max="-2" attributes="0"/>
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
-              </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButtonDados" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonDados" max="32767" attributes="0"/>
+                      <Component id="labelTurno" max="32767" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -83,12 +79,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="138" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="Dado1" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                      <Component id="Dado2" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                  <Component id="labelTurno" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace pref="207" max="32767" attributes="0"/>
                   <Component id="jButtonDados" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="346" max="-2" attributes="0"/>
               </Group>
@@ -104,9 +97,13 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonDadosMouseClicked"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="Dado1">
-        </Component>
-        <Component class="javax.swing.JLabel" name="Dado2">
+        <Component class="javax.swing.JLabel" name="labelTurno">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="18" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

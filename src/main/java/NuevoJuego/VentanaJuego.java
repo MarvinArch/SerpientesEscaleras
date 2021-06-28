@@ -39,7 +39,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanelTablero.setBackground(Color.yellow);
         turno=0;
     }
-    
+    //dibuja el tablero y rellena con casillas normales las posisciones que no contengan una casilla especial
     public void dibujarArreglo(int columnas, int filas){
         this.filas=filas;
         this.columnas=columnas;
@@ -77,14 +77,14 @@ public class VentanaJuego extends javax.swing.JFrame {
         }
         
     }
-    
+    //define la posicion de la casilla Final y la casilla de inicio
     public void CasillasInicioFinal(int columnas, int filas){
         tab[0][0]= new Inicio();
         tab[0][0].setBackground(Color.green);
         tab[filas-1][columnas-1]= new Final();
         tab[filas-1][columnas-1].setBackground(Color.red);
     }
-    
+   //Crear el arreglo de Jugadores que van a jugar una partida
     public void CrearArreglo(Jugador juga){
         jugadores[turno]=juga;
         tab[0][0].add(jugadores[turno]);
@@ -93,6 +93,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         turno++;
         if (turno==cantidadJuga) {
             turno=0;
+            labelTurno.setText(jugadores[turno].getNombre());
         }
     }
 
@@ -101,12 +102,16 @@ public class VentanaJuego extends javax.swing.JFrame {
         jugadores = new Jugador[cantidadJuga];
         
     }
+    //mueve la posicion del jugador y recibe el resultado del lanzamiento de dados
     public void MoverFicha(int casillas){
         int tmp=casillas+jugadores[turno].getPosicion();
+        if (tmp>(filas*columnas)) tmp=(filas*columnas);
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
                 if (jugadores[turno].getPosicion()== tab[i][j].getNumero()) {
+                    
                     tab[i][j].remove(jugadores[turno]);
+                    tab[i][j].repaint();
                 }
                 if (tmp==tab[i][j].getNumero()) {
                     tab[i][j].add(jugadores[turno]);
@@ -119,9 +124,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         if (turno==jugadores.length) {
             turno=0;
         }
-        
-            
-        
+        labelTurno.setText(jugadores[turno].getNombre());
     }
     
     
@@ -138,8 +141,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanelTablero = new javax.swing.JPanel();
         jPanelInfo = new javax.swing.JPanel();
         jButtonDados = new javax.swing.JButton();
-        Dado1 = new javax.swing.JLabel();
-        Dado2 = new javax.swing.JLabel();
+        labelTurno = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,29 +163,26 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
         });
 
+        labelTurno.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        labelTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanelInfoLayout = new javax.swing.GroupLayout(jPanelInfo);
         jPanelInfo.setLayout(jPanelInfoLayout);
         jPanelInfoLayout.setHorizontalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelInfoLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(Dado1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Dado2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonDados)
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(48, 48, 48))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
-                .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Dado1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Dado2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(87, 87, 87)
+                .addGap(73, 73, 73)
+                .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
                 .addComponent(jButtonDados)
                 .addGap(346, 346, 346))
         );
@@ -230,11 +229,10 @@ public class VentanaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDadosMouseClicked
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Dado1;
-    private javax.swing.JLabel Dado2;
     private javax.swing.JButton jButtonDados;
     private javax.swing.JPanel jPanelInfo;
     private javax.swing.JPanel jPanelTablero;
+    private javax.swing.JLabel labelTurno;
     // End of variables declaration//GEN-END:variables
 
     

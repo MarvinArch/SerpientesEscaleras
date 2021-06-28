@@ -90,4 +90,8 @@ public class Jugador extends JLabel{
         this.setIcon(Fondo1);
     }
     
+    public void EliminarImagen(){
+        this.setIcon(null);
+    }
+    
 }

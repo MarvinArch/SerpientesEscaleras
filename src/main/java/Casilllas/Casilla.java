@@ -18,6 +18,7 @@ public class Casilla extends JPanel{
     protected boolean ocupado;
     protected String tipo;
     protected JLabel fondo = new JLabel();
+    protected JLabel num = new JLabel();
     
     public void PintarFondo(){
         this.add(fondo);
@@ -34,6 +35,9 @@ public class Casilla extends JPanel{
 
     public void setNumero(int Numero) {
         this.Numero = Numero;
+        this.add(num);
+        num.setBounds(0, 0, 10, 15);
+        num.setText(""+Numero);
     }
 
     
