@@ -19,8 +19,7 @@ public class NuevoJuego {
     private static int cantidadJugadores;
     private static int contador; 
     private int jugadores;
-    private static Jugador[] partida;
-    private VentanaJuego juego;
+    private static VentanaJuego juego;
     
     public NuevoJuego(){
         
@@ -33,18 +32,16 @@ public class NuevoJuego {
     
     public static int getcantidadJugadores(){
         cantidadJugadores=var.tamañoArreglo();
+        juego= new VentanaJuego();
+        juego.setCantidadJuga(cantidadJugadores);
         return cantidadJugadores;
     }
     
     public void IniciarJuago(int cantidadJuga){
-        /*contador=0;
+        contador=0;
         jugadores=cantidadJuga;
-        partida= new Jugador[cantidadJuga];
         seleccion.CrearLista(cantidadJuga);
-        seleccion.setVisible(true);*/
-        juego= new VentanaJuego();
-        juego.setVisible(true);
-        
+        seleccion.setVisible(true);
     }
     
     
@@ -56,11 +53,15 @@ public class NuevoJuego {
    public static void definirJugadoresPartida(String nickname){
        for (int i = 0; i < cantidadJugadores; i++) {
            if (nombre(i).equalsIgnoreCase(nickname)) {
-               partida[contador]=var.Jugador(i);
+               juego.CrearArreglo(var.Jugador(i));
                contador++;
            }
        }
        
+   }
+   public static void DibujarTablero(){
+       
+       juego.setVisible(true);
    }
    
 }

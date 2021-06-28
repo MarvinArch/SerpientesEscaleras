@@ -100,9 +100,13 @@ public class JugadoresPartida extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        
         for (int i = 0; i < cantidadJugadores; i++) {
-            NuevoJuego.definirJugadoresPartida(jugadores[i].getSelectedItem().toString());
+            NuevoJuego.definirJugadoresPartida(jugadores[i].getSelectedItem().toString());            
         }
+        NuevoJuego.DibujarTablero();
+        dispose();
+        
     }//GEN-LAST:event_jButton1MouseClicked
     
     public void CrearComboBox(int cantidad){

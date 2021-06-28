@@ -133,7 +133,6 @@ public class Inicial extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonNJugMouseClicked
 
     private void jButtonNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonNuevoMouseClicked
-        System.gc();
         int cantidadJuga= Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese cantidad de Jugadores para al partida"));
         juego = new NuevoJuego();
         juego.IniciarJuago(cantidadJuga);

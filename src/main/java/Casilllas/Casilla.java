@@ -28,5 +28,13 @@ public class Casilla extends JPanel{
        this.tipo="Casilla Normal";
     }
 
+    public int getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(int Numero) {
+        this.Numero = Numero;
+    }
+
     
 }

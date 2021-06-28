@@ -17,7 +17,7 @@ public class Inicio extends Casilla{
     public Inicio() {
         this.tipo="Casilla Inicio";
         this.add(inicio);
-        inicio.setBounds(5, 5, 50, 25);
+        inicio.setBounds(0,0,this.getWidth(), this.getHeight());
         inicio.setText("Inicio");
     }
 

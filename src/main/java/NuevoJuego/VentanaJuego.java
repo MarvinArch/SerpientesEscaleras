@@ -6,6 +6,7 @@
 package NuevoJuego;
 
 import Casilllas.*;
+import Usuarios.Jugador;
 import java.awt.Color;
 
 /**
@@ -20,7 +21,12 @@ public class VentanaJuego extends javax.swing.JFrame {
     private Casilla[][] tab;
     private int ancho;
     private int alto;
-    Thread hilo1;
+    private Thread hilo1;
+    private int turno;
+    private int cantidadJuga;
+    private Jugador[] jugadores;
+    private int filas;
+    private int columnas;
     /**
      * Creates new form VentanaJuego
      */
@@ -31,14 +37,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         dibujarArreglo(10,10);
         dad.IniciarDado(1,1);
         jPanelTablero.setBackground(Color.yellow);
-        
-        
-        
+        turno=0;
     }
     
     public void dibujarArreglo(int columnas, int filas){
+        this.filas=filas;
+        this.columnas=columnas;
         ancho=Math.abs(750/columnas);
         alto =Math.abs(670/filas);
+        int casilla = 1;
         jPanelTablero.setBounds(0, 0, 750, 675);
         int inicioX=0;
         int inicioY=670-alto;
@@ -52,6 +59,8 @@ public class VentanaJuego extends javax.swing.JFrame {
                 }
                 jPanelTablero.add(tab[i][j]);
                 tab[i][j].setBounds(inicioX, inicioY, ancho, alto);
+                tab[i][j].setNumero(casilla);
+                casilla++;
                 
                 if (i%2==0) {
                     inicioX+=ancho;
@@ -75,6 +84,47 @@ public class VentanaJuego extends javax.swing.JFrame {
         tab[filas-1][columnas-1]= new Final();
         tab[filas-1][columnas-1].setBackground(Color.red);
     }
+    
+    public void CrearArreglo(Jugador juga){
+        jugadores[turno]=juga;
+        tab[0][0].add(jugadores[turno]);
+        jugadores[turno].EstablecerImagen(turno+1);
+        jugadores[turno].setPosicion(1);
+        turno++;
+        if (turno==cantidadJuga) {
+            turno=0;
+        }
+    }
+
+    public void setCantidadJuga(int cantidadJuga) {
+        this.cantidadJuga = cantidadJuga;
+        jugadores = new Jugador[cantidadJuga];
+        
+    }
+    public void MoverFicha(int casillas){
+        int tmp=casillas+jugadores[turno].getPosicion();
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                if (jugadores[turno].getPosicion()== tab[i][j].getNumero()) {
+                    tab[i][j].remove(jugadores[turno]);
+                }
+                if (tmp==tab[i][j].getNumero()) {
+                    tab[i][j].add(jugadores[turno]);
+                    jugadores[turno].setPosicion(jugadores[turno].getPosicion()+casillas);
+                    jugadores[turno].EstablecerImagen(turno+1);
+                }
+            }
+        }
+        turno++;
+        if (turno==jugadores.length) {
+            turno=0;
+        }
+        
+            
+        
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -175,6 +225,7 @@ public class VentanaJuego extends javax.swing.JFrame {
             int tmp1= (int)(Math.random()*6)+1;
             int tmp2= (int)(Math.random()*6)+1;
             dad.IniciarDado(tmp1,tmp2);
+            MoverFicha((tmp1+tmp2));
         }
     }//GEN-LAST:event_jButtonDadosMouseClicked
   

@@ -5,16 +5,22 @@
  */
 package Usuarios;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author alpha
  */
-public class Jugador {
+public class Jugador extends JLabel{
     private String nombre;
     private String nickName;
     private int ganadas;
     private int perdidas;
     private int jugadas;
+    private int posicion;
     private int turno;
 
     public Jugador(String nombre, String nickName, int ganadas, int perdidas, int jugadas) {
@@ -67,6 +73,21 @@ public class Jugador {
 
     public void setJugadas(int jugadas) {
         this.jugadas = jugadas;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(int posicion) {
+        this.posicion = posicion;
+    }
+    
+    
+    public void EstablecerImagen(int num){
+        ImageIcon Imagen1= new ImageIcon("Imagenes/ficha"+num+".png");
+        Icon Fondo1= new ImageIcon(Imagen1.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
+        this.setIcon(Fondo1);
     }
     
 }
