@@ -158,6 +158,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     public void DeclararGanador(int ganador){
         System.out.println("Entro??");
         JOptionPane.showMessageDialog(this, "El ganador a sido "+jugadores[ganador].getNombre());
+        NuevoJuego.TiempoPartida(tiempo.getHora(), tiempo.getMinuto(), tiempo.getSegundo());
     }
     //leer archivo y armar tablero unico requisito la primera lenea debe de ser la medida del archivo
     public void CrearArregloCasillasEspeciales(){

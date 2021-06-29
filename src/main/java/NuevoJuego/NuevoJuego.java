@@ -17,7 +17,8 @@ public class NuevoJuego {
     private static ArregloJugadores var = new ArregloJugadores();
     private JugadoresPartida seleccion = new JugadoresPartida(true);
     private static int cantidadJugadores;
-    private static int contador; 
+    private static int contador;
+    private static int hora, minuto, segundo;
     private int jugadores;
     private static VentanaJuego juego;
     
@@ -44,11 +45,11 @@ public class NuevoJuego {
     
     
    // agregar el asuario al arreglo actual para poder acceder al juego
-   public static void AgregarUsuario(String nombre, String nickname){
+    public static void AgregarUsuario(String nombre, String nickname){
        var.AgregarUsuario(nombre, nickname);
-   }
+    }
    // se definen los jugadores que entraran al juego
-   public static void definirJugadoresPartida(String nickname){
+    public static void definirJugadoresPartida(String nickname){
        for (int i = 0; i < cantidadJugadores; i++) {
            if (nombre(i).equalsIgnoreCase(nickname)) {
                juego.CrearArreglo(var.Jugador(i));
@@ -56,15 +57,23 @@ public class NuevoJuego {
            }
        }
        
-   }
+    }
    
-   public static void IniciarVentana(){
+    public static void IniciarVentana(){
        juego= new VentanaJuego();
        juego.setCantidadJuga(cantidadJugadores);
-   }
-   public static void DibujarTablero(){
+    }
+    public static void DibujarTablero(){
        
        juego.setVisible(true);
-   }
-   
+    }
+    public static void TiempoPartida(int hora, int minuto, int segundo){
+        NuevoJuego.hora=hora;
+        NuevoJuego.minuto= minuto;
+        NuevoJuego.segundo = segundo;
+    }
+    
+    public void AcreditarJuego(String nikname, boolean ganador){
+        
+    }
 }

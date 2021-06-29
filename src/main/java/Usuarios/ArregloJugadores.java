@@ -44,7 +44,10 @@ public class ArregloJugadores {
                     int ganadas= Integer.parseInt(datosUser.nextToken());
                     int perdidas= Integer.parseInt(datosUser.nextToken());
                     int jugadas = Integer.parseInt(datosUser.nextToken());
-                    juga.add(new Jugador(nombre,nickname,ganadas,perdidas,jugadas));
+                    int hora = Integer.parseInt(datosUser.nextToken());
+                    int minuto = Integer.parseInt(datosUser.nextToken());
+                    int segundo = Integer.parseInt(datosUser.nextToken());
+                    juga.add(new Jugador(nombre,nickname,ganadas,perdidas,jugadas,hora,minuto,segundo));
                     
                 }
                     
@@ -69,12 +72,12 @@ public class ArregloJugadores {
     }
     
     public String Nickname(int posicion){
-        String nombre= juga.get(posicion).getNombre();
+        String nombre= juga.get(posicion).getNickName();
         return nombre;
     }
     
     public void AgregarUsuario(String nombre, String nickname){
-        juga.add(new Jugador(nombre,nickname,0,0,0));
+        juga.add(new Jugador(nombre,nickname,0,0,0,0,0,0));
         Buscador.LimpiarArchivo();
         ReEscribirArchivo();
     }
@@ -86,7 +89,17 @@ public class ArregloJugadores {
     
     public void ReEscribirArchivo(){
         for (int i = 0; i < juga.size(); i++) {
-            Buscador.EscribirUsuarioArchivo(juga.get(i).getNombre(), juga.get(i).getNickName(), juga.get(i).getGanadas(), juga.get(i).getPerdidas(), juga.get(i).getJugadas());
+            Buscador.EscribirUsuarioArchivo(juga.get(i).getNombre(), juga.get(i).getNickName(), juga.get(i).getGanadas(), juga.get(i).getPerdidas(), 
+                    juga.get(i).getJugadas(),juga.get(i).getHora(),juga.get(i).getMinuto(),juga.get(i).getSegundo());
+        }
+    }
+    
+    public void acreditarPartida(String nickname, boolean ganador, int hora, int minuto, int segundo){
+        for (int i = 0; i < juga.size(); i++) {
+            if (juga.get(i).getNickName().equalsIgnoreCase(nickname)) {
+                juga.get(i).partida(ganador);
+                juga.get(i).tiempo(hora, minuto, segundo);
+            }
         }
     }
    

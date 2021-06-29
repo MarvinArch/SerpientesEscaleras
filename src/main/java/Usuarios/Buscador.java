@@ -27,11 +27,11 @@ public class Buscador {
        return archivo;
     }
     
-    public static void EscribirUsuarioArchivo(String nombre, String nickname, int ganadas, int perdidas, int jugadas){
+    public static void EscribirUsuarioArchivo(String nombre, String nickname, int ganadas, int perdidas, int jugadas, int hora, int minuto, int segundo){
         File ruta = new File("Recursos/Aiourssu.txt");   
         try {
             BufferedWriter pw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ruta,true), "utf-8"));
-            pw.write("Usuario("+nombre+","+nickname+","+ganadas+","+perdidas+","+jugadas+")"+"\n");
+            pw.write("Usuario("+nombre+","+nickname+","+ganadas+","+perdidas+","+jugadas+","+hora+","+minuto+","+segundo+","+")"+"\n");
             pw.close();
             } catch (IOException ex) {
                 System.out.println(ex.getMessage());
