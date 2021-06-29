@@ -24,6 +24,24 @@ public class Casilla extends JPanel{
     
     public void PintarFondo(){
         this.add(fondo);
+        Color envio = new Color(0,0,0);
+        int aleatorio = (int)(Math.random()*6);
+        if (aleatorio==0) {
+            envio = new Color(0 , 206, 209);
+        }else if(aleatorio==1){
+            envio = new Color(0 , 0, 205);
+        }else if(aleatorio==2){
+            envio = new Color(123 , 104, 238);
+        }else if(aleatorio==3){
+            envio = new Color(176 , 196, 222);
+        }else if(aleatorio==4){
+            envio = new Color(255 , 140, 0);
+        }else if(aleatorio==5){
+            envio = new Color(255 , 255, 0);
+        }
+        
+        
+        this.setBackground(envio);
     }
 
     public Casilla() {

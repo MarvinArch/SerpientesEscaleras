@@ -34,7 +34,7 @@ public class Serpiente extends Casilla{
         Icon Fondo1= new ImageIcon(Imagen1.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
         this.add(fondo);
         fondo.setIcon(Fondo1);
-        this.setBackground(Color.ORANGE);
+        this.setBackground(new Color(75, 0, 130));
         this.setLayout(null);
         this.add(num);
         fondo.setBounds(0, 0, this.getWidth(), this.getHeight());

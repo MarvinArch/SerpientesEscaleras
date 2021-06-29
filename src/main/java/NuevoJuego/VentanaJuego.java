@@ -56,7 +56,6 @@ public class VentanaJuego extends javax.swing.JFrame {
             for (int j = 0; j < columnas; j++) {
                 if (tab[i][j]==null) {
                     tab[i][j]=new Casilla();
-                    tab[i][j].setBackground(Color.blue);
                 }
                 jPanelTablero.add(tab[i][j]);
                 tab[i][j].setBounds(inicioX, inicioY, ancho, alto);
