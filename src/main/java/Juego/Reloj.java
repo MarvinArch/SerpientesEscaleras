@@ -94,13 +94,9 @@ public class Reloj extends javax.swing.JPanel implements Runnable {
         while(hora<24){
             while(correr==true){
                 segundo++;
-                if (segundo<10) {
-                    jLabelSegundo.setText("0"+segundo);
-                }else{
-                    jLabelSegundo.setText(""+segundo);
-                }
                 if (segundo>59) {
                     minuto++;
+                    segundo=0;
                     if (minuto<10) {
                         jLabelMinuto.setText("0"+minuto+":");
                     }else {
@@ -108,10 +104,16 @@ public class Reloj extends javax.swing.JPanel implements Runnable {
                     }
                     if (minuto>59) {
                         hora++;
+                        minuto=0;
                         if (hora<10) {
                             jLabelHora.setText("0"+hora+":");
                         }
                     }
+                }
+                if (segundo<10) {
+                    jLabelSegundo.setText("0"+segundo);
+                }else{
+                    jLabelSegundo.setText(""+segundo);
                 }
                 try {
                     Thread.sleep(1000);

@@ -57,6 +57,17 @@ public class Jugador extends JLabel{
         this.minuto += minuto;
         this. segundo += segundo;
     }
+    
+    public void timepoArreglado(){
+        if (segundo>59) {
+            minuto++;
+            segundo=0;
+        }
+        if (minuto>59) {
+            hora++;
+            minuto=0;
+        }
+    }
 
     public String getNombre() {
         return nombre;

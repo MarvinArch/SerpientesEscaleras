@@ -37,7 +37,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     public VentanaJuego() {
         initComponents();
         jPanelInfo.add(dad);
-        dad.setBounds(20,150,175,80);
+        dad.setBounds(40,150,175,80);
         dad.IniciarDado(1,1);
         CrearArregloCasillasEspeciales();
         ButtonAceptar.setVisible(false);
@@ -99,7 +99,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         turno++;
         if (turno==cantidadJuga) {
             turno=0;
-            labelTurno.setText(jugadores[turno].getNombre());
+            labelTurno.setText(jugadores[turno].getNickName());
         }
     }
 
@@ -151,14 +151,22 @@ public class VentanaJuego extends javax.swing.JFrame {
         if (turnoextra==true) turno--;
         turno++;
         if (turno==jugadores.length) turno=0;
-        labelTurno.setText(jugadores[turno].getNombre());
-        if (jugadores[turno].getPosicion()>=(filas*columnas)-1) DeclararGanador(turno);
+        labelTurno.setText(jugadores[turno].getNickName());
+        if (jugadores[turno].getPosicion()>=(filas*columnas)-1) {
+            jugadores[turno].setGanador(true);
+            DeclararGanador(turno);
+        }
     }
     
     public void DeclararGanador(int ganador){
         System.out.println("Entro??");
         JOptionPane.showMessageDialog(this, "El ganador a sido "+jugadores[ganador].getNombre());
         NuevoJuego.TiempoPartida(tiempo.getHora(), tiempo.getMinuto(), tiempo.getSegundo());
+        for (int i = 0; i < cantidadJuga; i++) {
+            NuevoJuego.AcreditarJuego(jugadores[i].getNickName(), jugadores[i].isGanador());
+        }
+        NuevoJuego.Reescribir();
+        this.dispose();
     }
     //leer archivo y armar tablero unico requisito la primera lenea debe de ser la medida del archivo
     public void CrearArregloCasillasEspeciales(){
@@ -334,19 +342,22 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(16, 72, Short.MAX_VALUE)
                         .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonDados)
-                            .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(88, 88, 88))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                                    .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(61, 61, 61))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                                    .addComponent(ButtonAceptar)
-                                    .addGap(72, 72, 72)))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(88, 88, 88))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                                .addComponent(ButtonAceptar)
+                                .addGap(72, 72, 72))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDados)
+                .addGap(56, 56, 56))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,9 +366,9 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
                 .addComponent(jButtonDados)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(ButtonAceptar)

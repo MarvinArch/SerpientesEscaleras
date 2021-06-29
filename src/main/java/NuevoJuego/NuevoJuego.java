@@ -7,6 +7,7 @@ package NuevoJuego;
 
 import Juego.Inicial;
 import Usuarios.ArregloJugadores;
+import Usuarios.Buscador;
 import Usuarios.Jugador;
 
 /**
@@ -73,7 +74,12 @@ public class NuevoJuego {
         NuevoJuego.segundo = segundo;
     }
     
-    public void AcreditarJuego(String nikname, boolean ganador){
-        
+    public static void AcreditarJuego(String nikname, boolean ganador){
+        var.acreditarPartida(nikname, ganador, hora, minuto, segundo);
+    }
+    
+    public static void Reescribir(){
+        Buscador.LimpiarArchivo();
+        var.ReEscribirArchivo();
     }
 }
