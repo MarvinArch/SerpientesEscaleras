@@ -42,6 +42,7 @@ public class Inicial extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Serpientes y Escaleras");
 
         jLabel1.setText("Serpientes y Escaleras");
 
@@ -63,6 +64,11 @@ public class Inicial extends javax.swing.JFrame {
         jButtonEsta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonEstaMouseClicked(evt);
+            }
+        });
+        jButtonEsta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEstaActionPerformed(evt);
             }
         });
 
@@ -148,6 +154,11 @@ public class Inicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButtonEstaMouseClicked
+
+    private void jButtonEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstaActionPerformed
+        // TODO add your handling code here:
+        NuevoJuego.OrdenarArreglo();
+    }//GEN-LAST:event_jButtonEstaActionPerformed
 
     /**
      * @param args the command line arguments

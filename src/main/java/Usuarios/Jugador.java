@@ -14,7 +14,7 @@ import javax.swing.JLabel;
  *
  * @author alpha
  */
-public class Jugador extends JLabel{
+public class Jugador extends JLabel implements Comparable<Jugador>{
     private String nombre;
     private String nickName;
     private int ganadas;
@@ -166,6 +166,17 @@ public class Jugador extends JLabel{
 
     public void setSegundo(int segundo) {
         this.segundo = segundo;
+    }
+
+    @Override
+    public int compareTo(Jugador t) {
+        if (t.getGanadas()<ganadas) {
+            return -1;
+        }else if(t.getGanadas()>ganadas){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     
 }

@@ -82,4 +82,11 @@ public class NuevoJuego {
         Buscador.LimpiarArchivo();
         var.ReEscribirArchivo();
     }
+    
+    public static void OrdenarArreglo(){
+        var.OrdenarJugadores();
+        Buscador.LimpiarArchivo();
+        var.ReEscribirArchivo();
+        var.Estadisticas();
+    }
 }

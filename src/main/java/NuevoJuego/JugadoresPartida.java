@@ -44,7 +44,7 @@ public class JugadoresPartida extends javax.swing.JDialog {
 
         Escoger.setText("Escoger Jugadores ");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Iniciar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -63,7 +63,7 @@ public class JugadoresPartida extends javax.swing.JDialog {
                         .addGap(164, 164, 164))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfondoLayout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(180, 180, 180))))
+                        .addGap(188, 188, 188))))
         );
         PanelfondoLayout.setVerticalGroup(
             PanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

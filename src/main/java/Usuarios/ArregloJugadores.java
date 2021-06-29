@@ -5,9 +5,12 @@
  */
 package Usuarios;
 
+import Juego.Estadisticas;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 /**
@@ -60,12 +63,6 @@ public class ArregloJugadores {
         }
     }
     
-    public void ImprimirArreglo(){
-        for (int i = 0; i < juga.size(); i++) {
-            System.out.println(juga.get(i).getNombre());
-        }
-    }
-    
     public int tamañoArreglo(){
         int tamaño= juga.size();
         return tamaño;
@@ -103,6 +100,16 @@ public class ArregloJugadores {
         }
     }
     
+    public void OrdenarJugadores(){
+        Collections.sort(juga);
+    }
     
-   
+    public void Estadisticas(){
+        Estadisticas var= new Estadisticas();
+        var.inicilizarArreglos(juga.size());
+        for (int i = 0; i < juga.size(); i++) {
+            var.PintarArreglo(juga.get(i).getNickName(), juga.get(i).getNombre(), juga.get(i).getGanadas(), juga.get(i).getPerdidas(), juga.get(i).getJugadas(), juga.get(i).getHora(), juga.get(i).getMinuto(), juga.get(i).getSegundo());
+        }
+        var.setVisible(true);
+    }
 }

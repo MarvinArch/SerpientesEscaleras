@@ -297,6 +297,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         jMenuAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Juego Serpientes y Escaleras");
 
         javax.swing.GroupLayout jPanelTableroLayout = new javax.swing.GroupLayout(jPanelTablero);
         jPanelTablero.setLayout(jPanelTableroLayout);
