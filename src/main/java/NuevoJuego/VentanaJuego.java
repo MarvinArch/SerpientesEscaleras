@@ -6,6 +6,7 @@
 package NuevoJuego;
 
 import Casilllas.*;
+import Juego.Reloj;
 import Usuarios.Buscador;
 import Usuarios.Jugador;
 import java.awt.Color;
@@ -27,6 +28,8 @@ public class VentanaJuego extends javax.swing.JFrame {
     private Thread hilo1;
     private Jugador[] jugadores;
     private int filas,columnas, accion, turno, cantidadJuga, ancho, alto, auxX, auxY;
+    private Reloj tiempo;
+    private boolean inicio;
     
     /**
      * Creates new form VentanaJuego
@@ -39,6 +42,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         CrearArregloCasillasEspeciales();
         ButtonAceptar.setVisible(false);
         turno=0;
+        inicio=false;
     }
     //dibuja el tablero y rellena con casillas normales las posisciones que no contengan una casilla especial
     public void DibujarArreglo(int columnas, int filas){
@@ -73,7 +77,9 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
             inicioY-=alto;
         }
-        
+        tiempo = new Reloj();
+        this.add(tiempo);
+        tiempo.setBounds(765, 525, 250, 70);
         
     }
     //define la posicion de la casilla Final y la casilla de inicio
@@ -278,7 +284,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         Reiniciar = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuSalir = new javax.swing.JMenuItem();
+        jMenuAcerca = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -290,7 +297,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         );
         jPanelTableroLayout.setVerticalGroup(
             jPanelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 655, Short.MAX_VALUE)
+            .addGap(0, 677, Short.MAX_VALUE)
         );
 
         jButtonDados.setText("Tirar Dados");
@@ -322,38 +329,38 @@ public class VentanaJuego extends javax.swing.JFrame {
         jPanelInfoLayout.setHorizontalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInfoLayout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                        .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                        .addComponent(ButtonAceptar)
-                        .addGap(56, 56, 56))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonDados)
+                            .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(88, 88, 88))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                                    .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(61, 61, 61))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                                    .addComponent(ButtonAceptar)
+                                    .addGap(72, 72, 72)))))))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addComponent(jButtonDados)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(ButtonAceptar)
-                .addGap(72, 72, 72))
+                .addContainerGap())
         );
 
         Menu.setText("Menu");
@@ -366,10 +373,18 @@ public class VentanaJuego extends javax.swing.JFrame {
         });
         Menu.add(Reiniciar);
 
+        jMenuSalir.setText("Salir");
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+        Menu.add(jMenuSalir);
+
         jMenuBar1.add(Menu);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuAcerca.setText("Acerca de");
+        jMenuBar1.add(jMenuAcerca);
 
         setJMenuBar(jMenuBar1);
 
@@ -380,8 +395,8 @@ public class VentanaJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanelTablero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -389,10 +404,10 @@ public class VentanaJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(84, 84, 84))
-                    .addComponent(jPanelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -400,7 +415,14 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDadosMouseClicked
+        if(inicio==false){
+            tiempo.setCorrer(true);
+            hilo1=new Thread(tiempo);
+            hilo1.start();
+            inicio=true;
+        }
         if (accionDado==0) {
+            
             accionDado=1;
             dad.setMover(true);
             hilo1=new Thread(dad);
@@ -434,6 +456,10 @@ public class VentanaJuego extends javax.swing.JFrame {
         jButtonDados.setVisible(true);
         AccionCasilla();
     }//GEN-LAST:event_ButtonAceptarActionPerformed
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jMenuSalirActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
@@ -442,8 +468,9 @@ public class VentanaJuego extends javax.swing.JFrame {
     private javax.swing.JMenuItem Reiniciar;
     private javax.swing.JButton jButtonDados;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenuAcerca;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuSalir;
     private javax.swing.JPanel jPanelInfo;
     private javax.swing.JPanel jPanelTablero;
     private javax.swing.JScrollPane jScrollPane2;

@@ -28,7 +28,7 @@ public class TirarDados extends Casilla{
     
     @Override
     public void PintarFondo(){
-        ImageIcon Imagen1= new ImageIcon("Imagenes/pierde.png");
+        ImageIcon Imagen1= new ImageIcon("Imagenes/extra.png");
         Icon Fondo1= new ImageIcon(Imagen1.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_DEFAULT));
         this.add(fondo);
         fondo.setIcon(Fondo1);
