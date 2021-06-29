@@ -36,4 +36,10 @@ public class Escalera extends Casilla{
         num.setText(""+Numero);
     }
     
+    @Override
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas"+"\nY se ha ganado \nescalar "+accion+"\ncasillas mas";
+        return dev;
+    }
+    
 }

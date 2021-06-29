@@ -18,6 +18,7 @@ public class Avanzar extends Casilla{
 
     public Avanzar(int posiciones) {
         this.accion=posiciones;
+        this.tipo= "avanza";
     }
     
     @Override
@@ -33,5 +34,11 @@ public class Avanzar extends Casilla{
         fondo.setBounds(0, 0, this.getWidth(), this.getHeight());
         num.setBounds(0, 0, 10, 15);
         num.setText(""+Numero);
+    }
+    
+    @Override
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas"+"\nY se ha ganado \navanzar "+accion+"\ncasillas mas";
+        return dev;
     }
 }

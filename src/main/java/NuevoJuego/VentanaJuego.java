@@ -42,6 +42,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         dad.setBounds(20,150,175,80);
         dad.IniciarDado(1,1);
         CrearArregloCasillasEspeciales();
+        ButtonAceptar.setVisible(false);
         turno=0;
     }
     //dibuja el tablero y rellena con casillas normales las posisciones que no contengan una casilla especial
@@ -132,13 +133,21 @@ public class VentanaJuego extends javax.swing.JFrame {
                             tab[i][j].ImpresionAccion(0, jugadores[turno].getNombre());
                             turnoextra=true;
                         }else if(tab[i][j].getTipo().equalsIgnoreCase("Serpiente")){
-                            
+                            ButtonAceptar.setVisible(true);
+                            jButtonDados.setVisible(false);
+                            accion=1;
                         }else if(tab[i][j].getTipo().equalsIgnoreCase("Escalera")){
-                            
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
-                            
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
-                            
+                            ButtonAceptar.setVisible(true);
+                            jButtonDados.setVisible(false);
+                            accion=2;
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("avanza")){
+                            ButtonAceptar.setVisible(true);
+                            jButtonDados.setVisible(false);
+                            accion=3;
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("retrocede")){
+                            ButtonAceptar.setVisible(true);
+                            jButtonDados.setVisible(false);
+                            accion=4;
                         }
                     }
                 }
@@ -250,6 +259,10 @@ public class VentanaJuego extends javax.swing.JFrame {
         }catch(Exception ex){
         }
     }
+    
+    public void AccionCasilla(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -267,6 +280,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         LabelInfo = new javax.swing.JTextArea();
+        ButtonAceptar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         Menu = new javax.swing.JMenu();
         Reiniciar = new javax.swing.JMenuItem();
@@ -302,6 +316,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         LabelInfo.setRows(5);
         jScrollPane2.setViewportView(LabelInfo);
 
+        ButtonAceptar.setText("Aceptar");
+
         javax.swing.GroupLayout jPanelInfoLayout = new javax.swing.GroupLayout(jPanelInfo);
         jPanelInfo.setLayout(jPanelInfoLayout);
         jPanelInfoLayout.setHorizontalGroup(
@@ -320,7 +336,10 @@ public class VentanaJuego extends javax.swing.JFrame {
                         .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                        .addComponent(ButtonAceptar)
+                        .addGap(56, 56, 56))))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +352,9 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(jButtonDados)
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
+                .addGap(36, 36, 36)
+                .addComponent(ButtonAceptar)
+                .addGap(72, 72, 72))
         );
 
         Menu.setText("Menu");
@@ -410,6 +431,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_ReiniciarActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAceptar;
     private javax.swing.JTextArea LabelInfo;
     private javax.swing.JMenu Menu;
     private javax.swing.JMenuItem Reiniciar;

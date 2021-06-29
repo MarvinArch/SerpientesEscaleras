@@ -17,7 +17,8 @@ import javax.swing.ImageIcon;
 public class Retrocede extends Casilla {
 
     public Retrocede(int posiciones) {
-        this.accion=posiciones;
+        this.accion=0-posiciones;
+        this.tipo="retrocede";
     }
     
     @Override
@@ -33,5 +34,10 @@ public class Retrocede extends Casilla {
         fondo.setBounds(0, 0, this.getWidth(), this.getHeight());
         num.setBounds(0, 0, 10, 15);
         num.setText(""+Numero);
+    }
+    @Override
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas"+"\nY debe retroceder "+accion+"\ncasillas";
+        return dev;
     }
 }

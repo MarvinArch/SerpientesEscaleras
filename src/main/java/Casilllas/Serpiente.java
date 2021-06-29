@@ -41,4 +41,9 @@ public class Serpiente extends Casilla{
         num.setBounds(0, 0, 10, 15);
         num.setText(""+Numero);
     }
+    @Override
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas"+"\nY resbalo "+accion+"\ncasillas";
+        return dev;
+    }
 }
