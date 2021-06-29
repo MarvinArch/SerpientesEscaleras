@@ -30,6 +30,7 @@ public class Jugador extends JLabel{
         this.ganadas = ganadas;
         this.perdidas = perdidas;
         this.jugadas = jugadas;
+        this.turno=0;
     }
     
     public Jugador(){
@@ -101,6 +102,14 @@ public class Jugador extends JLabel{
 
     public void setGanador(boolean ganador) {
         this.ganador = ganador;
+    }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
     }
     
 }

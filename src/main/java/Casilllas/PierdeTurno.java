@@ -15,6 +15,10 @@ import javax.swing.ImageIcon;
  * @author alpha
  */
 public class PierdeTurno extends Casilla{
+
+    public PierdeTurno() {
+    this.tipo = "Pierdeturno";
+    }
  
     
     @Override
@@ -29,5 +33,11 @@ public class PierdeTurno extends Casilla{
         fondo.setBounds(0, 0, this.getWidth(), this.getHeight());
         num.setBounds(0, 0, 10, 15);
         num.setText(""+Numero);
+    }
+    
+    @Override
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas"+"\nY tiene penalizacion \nde un turno";
+        return dev;
     }
 }

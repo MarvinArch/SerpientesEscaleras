@@ -48,6 +48,10 @@ public class Casilla extends JPanel{
        this.tipo="Casilla Normal";
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public int getNumero() {
         return Numero;
     }
@@ -62,6 +66,11 @@ public class Casilla extends JPanel{
     
     public int Accion(){
         return accion;
+    }
+    
+    public String ImpresionAccion(int casillas, String nombre){
+        String dev = "El jugador "+nombre +" \navanzo "+ casillas+" casillas";
+        return dev;
     }
 
     

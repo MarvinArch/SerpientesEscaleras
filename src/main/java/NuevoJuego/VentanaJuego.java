@@ -32,6 +32,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     private Jugador[] jugadores;
     private int filas;
     private int columnas;
+    private int accion;
     /**
      * Creates new form VentanaJuego
      */
@@ -69,7 +70,7 @@ public class VentanaJuego extends javax.swing.JFrame {
                     inicioX-=ancho;
                 }
                 if (j==(columnas-1) && i%2==0) {
-                    inicioX=750-ancho;
+                    inicioX-=ancho;
                 }else if(j==(columnas-1) && i%2!=0){
                     inicioX=0;
                 }
@@ -107,28 +108,51 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
     //mueve la posicion del jugador y recibe el resultado del lanzamiento de dados
     public void MoverFicha(int casillas){
+        boolean turnoextra=false;
         int tmp=casillas+jugadores[turno].getPosicion();
         if (tmp>(filas*columnas)) tmp=(filas*columnas);
-        for (int i = 0; i < filas; i++) {
-            for (int j = 0; j < columnas; j++) {
-                if (jugadores[turno].getPosicion()== tab[i][j].getNumero()) {
-                    
-                    tab[i][j].remove(jugadores[turno]);
-                    tab[i][j].repaint();
-                }
-                if (tmp==tab[i][j].getNumero()) {
-                    tab[i][j].add(jugadores[turno]);
-                    tab[i][j].repaint();
-                    jugadores[turno].setPosicion(jugadores[turno].getPosicion()+casillas);
-                    if (jugadores[turno].getPosicion()>=(filas*columnas)-1) DeclararGanador(turno);
+        if(jugadores[turno].getTurno()==0){
+            for (int i = 0; i < filas; i++) {
+                for (int j = 0; j < columnas; j++) {
+                    if (jugadores[turno].getPosicion()== tab[i][j].getNumero()) {
+                        tab[i][j].remove(jugadores[turno]);
+                        tab[i][j].repaint();
+                    }
+                    if (tmp==tab[i][j].getNumero()) {
+                        tab[i][j].add(jugadores[turno]);
+                        tab[i][j].repaint();
+                        jugadores[turno].setPosicion(jugadores[turno].getPosicion()+casillas);
+                    // identificar la casilla en la que el jugador se ha posicionado
+                        LabelInfo.setText(tab[i][j].ImpresionAccion(casillas, jugadores[turno].getNombre()));
+                        if (tab[i][j].getTipo().equalsIgnoreCase("Casilla Normal")) {
+                            
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Pierdeturno")){
+                            jugadores[turno].setTurno(1);
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
+                            tab[i][j].ImpresionAccion(0, jugadores[turno].getNombre());
+                            turnoextra=true;
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Serpiente")){
+                            
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Escalera")){
+                            
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
+                            
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
+                            
+                        }
+                    }
                 }
             }
+        }else{
+            LabelInfo.setText("el Jugador "+ jugadores[turno].getNombre()+" tiene \npenalizacion hasta \nel siguiente turno");
+            jugadores[turno].setTurno(0);
         }
         
-        
+        if (turnoextra==true) turno--;
         turno++;
         if (turno==jugadores.length) turno=0;
         labelTurno.setText(jugadores[turno].getNombre());
+        if (jugadores[turno].getPosicion()>=(filas*columnas)-1) DeclararGanador(turno);
     }
     
     public void DeclararGanador(int ganador){
@@ -241,6 +265,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         jButtonDados = new javax.swing.JButton();
         labelTurno = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        LabelInfo = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Menu = new javax.swing.JMenu();
+        Reiniciar = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -252,7 +282,7 @@ public class VentanaJuego extends javax.swing.JFrame {
         );
         jPanelTableroLayout.setVerticalGroup(
             jPanelTableroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 655, Short.MAX_VALUE)
         );
 
         jButtonDados.setText("Tirar Dados");
@@ -268,20 +298,29 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         jLabel1.setText("TURNO");
 
+        LabelInfo.setColumns(20);
+        LabelInfo.setRows(5);
+        jScrollPane2.setViewportView(LabelInfo);
+
         javax.swing.GroupLayout jPanelInfoLayout = new javax.swing.GroupLayout(jPanelInfo);
         jPanelInfo.setLayout(jPanelInfoLayout);
         jPanelInfoLayout.setHorizontalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(48, 48, 48))
             .addGroup(jPanelInfoLayout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                        .addGroup(jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTurno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(48, 48, 48))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInfoLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanelInfoLayout.setVerticalGroup(
             jPanelInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,10 +329,29 @@ public class VentanaJuego extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(labelTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonDados)
-                .addGap(346, 346, 346))
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
+
+        Menu.setText("Menu");
+
+        Reiniciar.setText("Reiniciar Juego");
+        Reiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReiniciarActionPerformed(evt);
+            }
+        });
+        Menu.add(Reiniciar);
+
+        jMenuBar1.add(Menu);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -311,7 +369,9 @@ public class VentanaJuego extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(84, 84, 84))
                     .addComponent(jPanelTablero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -333,14 +393,33 @@ public class VentanaJuego extends javax.swing.JFrame {
             int tmp2= (int)(Math.random()*6)+1;
             dad.IniciarDado(tmp1,tmp2);
             MoverFicha((tmp1+tmp2));
+            
         }
     }//GEN-LAST:event_jButtonDadosMouseClicked
+
+    private void ReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < cantidadJuga; i++) {
+            turno=i;
+            MoverFicha(1-jugadores[turno].getPosicion());
+            jugadores[i].setPosicion(0);
+            
+        }
+        
+        turno=0;
+    }//GEN-LAST:event_ReiniciarActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea LabelInfo;
+    private javax.swing.JMenu Menu;
+    private javax.swing.JMenuItem Reiniciar;
     private javax.swing.JButton jButtonDados;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelInfo;
     private javax.swing.JPanel jPanelTablero;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelTurno;
     // End of variables declaration//GEN-END:variables
 
