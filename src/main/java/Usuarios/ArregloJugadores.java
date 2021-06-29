@@ -53,7 +53,7 @@ public class ArregloJugadores {
        
         }catch (Exception ex){  
         //Captura un posible error le imprime en pantalla   
-            System.out.println("Algo Salio mal");  
+            System.out.println("Algo Salio mal Arreglo de Jugadores");  
         }
     }
     

@@ -32,8 +32,6 @@ public class NuevoJuego {
     
     public static int getcantidadJugadores(){
         cantidadJugadores=var.tamañoArreglo();
-        juego= new VentanaJuego();
-        juego.setCantidadJuga(cantidadJugadores);
         return cantidadJugadores;
     }
     
@@ -58,6 +56,11 @@ public class NuevoJuego {
            }
        }
        
+   }
+   
+   public static void IniciarVentana(){
+       juego= new VentanaJuego();
+       juego.setCantidadJuga(cantidadJugadores);
    }
    public static void DibujarTablero(){
        

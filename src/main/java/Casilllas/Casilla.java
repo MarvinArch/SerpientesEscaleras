@@ -6,8 +6,10 @@
 package Casilllas;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -15,14 +17,13 @@ import javax.swing.JPanel;
  */
 public class Casilla extends JPanel{
     protected int Numero;
-    protected boolean ocupado;
     protected String tipo;
+    protected int accion;
     protected JLabel fondo = new JLabel();
     protected JLabel num = new JLabel();
     
     public void PintarFondo(){
         this.add(fondo);
-        fondo.setBackground(Color.red);
     }
 
     public Casilla() {
@@ -36,8 +37,13 @@ public class Casilla extends JPanel{
     public void setNumero(int Numero) {
         this.Numero = Numero;
         this.add(num);
+        this.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         num.setBounds(0, 0, 10, 15);
         num.setText(""+Numero);
+    }
+    
+    public int Accion(){
+        return accion;
     }
 
     

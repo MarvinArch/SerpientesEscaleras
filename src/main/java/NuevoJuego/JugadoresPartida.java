@@ -23,11 +23,8 @@ public class JugadoresPartida extends javax.swing.JDialog {
     private JLabel[] labelJugadores;
     
     public JugadoresPartida(boolean modal) {
-        
-        cantidadJugadores = NuevoJuego.getcantidadJugadores();
         initComponents();
-        
-         
+        cantidadJugadores = NuevoJuego.getcantidadJugadores();
     }
 
     /**
@@ -100,7 +97,7 @@ public class JugadoresPartida extends javax.swing.JDialog {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        
+        NuevoJuego.IniciarVentana();
         for (int i = 0; i < cantidadJugadores; i++) {
             NuevoJuego.definirJugadoresPartida(jugadores[i].getSelectedItem().toString());            
         }
