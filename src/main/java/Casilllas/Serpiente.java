@@ -17,7 +17,14 @@ import javax.swing.ImageIcon;
 public class Serpiente extends Casilla{
 
     public Serpiente(int posIX, int posIY, int posFX, int posFY) {
-        int tmp=(posIX-posFX)*(posIY-posFY);
+        int tmp;
+        if (posIX-posFX==0) {
+            tmp=Math.abs(posIY-posFY);
+        }else if(posIY-posFY==0){
+            tmp=Math.abs(posIX-posFX);
+        }else{
+            tmp=Math.abs((posIX-posFX)*(posIY-posFY));
+        }        
         this.accion=0-Math.abs(tmp);
         this.tipo = "Serpiente";
     }

@@ -17,7 +17,14 @@ import javax.swing.ImageIcon;
 public class Escalera extends Casilla{
 
     public Escalera(int posXI, int posYI, int posXF, int posYF) {
-        int tmp=(posXI-posXF)*(posYI-posYF);
+        int tmp;
+        if (posXI-posXF==0) {
+            tmp=Math.abs(posYI-posYF);
+        }else if(posYI-posYF==0){
+            tmp=Math.abs(posXI-posXF);
+        }else{
+            tmp=Math.abs((posXI-posXF)*(posYI-posYF));
+        }
         this.accion=Math.abs(tmp);
         this.tipo = "Escalera";
     }

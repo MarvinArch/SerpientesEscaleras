@@ -24,15 +24,10 @@ public class VentanaJuego extends javax.swing.JFrame {
     private boolean movimiento=false;
     private Dados dad= new Dados();
     private Casilla[][] tab;
-    private int ancho;
-    private int alto;
     private Thread hilo1;
-    private int turno;
-    private int cantidadJuga;
     private Jugador[] jugadores;
-    private int filas;
-    private int columnas;
-    private int accion;
+    private int filas,columnas, accion, turno, cantidadJuga, ancho, alto, auxX, auxY;
+    
     /**
      * Creates new form VentanaJuego
      */
@@ -112,16 +107,15 @@ public class VentanaJuego extends javax.swing.JFrame {
         boolean turnoextra=false;
         int tmp=casillas+jugadores[turno].getPosicion();
         if (tmp>(filas*columnas)) tmp=(filas*columnas);
+        if (tmp<=0) tmp=1;
         if(jugadores[turno].getTurno()==0){
             for (int i = 0; i < filas; i++) {
                 for (int j = 0; j < columnas; j++) {
                     if (jugadores[turno].getPosicion()== tab[i][j].getNumero()) {
                         tab[i][j].remove(jugadores[turno]);
-                        tab[i][j].repaint();
                     }
                     if (tmp==tab[i][j].getNumero()) {
                         tab[i][j].add(jugadores[turno]);
-                        tab[i][j].repaint();
                         jugadores[turno].setPosicion(jugadores[turno].getPosicion()+casillas);
                     // identificar la casilla en la que el jugador se ha posicionado
                         LabelInfo.setText(tab[i][j].ImpresionAccion(casillas, jugadores[turno].getNombre()));
@@ -132,24 +126,15 @@ public class VentanaJuego extends javax.swing.JFrame {
                         }else if(tab[i][j].getTipo().equalsIgnoreCase("TurnoExtra")){
                             tab[i][j].ImpresionAccion(0, jugadores[turno].getNombre());
                             turnoextra=true;
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Serpiente")){
-                            ButtonAceptar.setVisible(true);
-                            jButtonDados.setVisible(false);
+                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Casilla Inicio")){
+                            
+                        }else {
+                            Auxiliares(i, j);
+                            turnoextra=true;
                             accion=1;
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("Escalera")){
-                            ButtonAceptar.setVisible(true);
-                            jButtonDados.setVisible(false);
-                            accion=2;
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("avanza")){
-                            ButtonAceptar.setVisible(true);
-                            jButtonDados.setVisible(false);
-                            accion=3;
-                        }else if(tab[i][j].getTipo().equalsIgnoreCase("retrocede")){
-                            ButtonAceptar.setVisible(true);
-                            jButtonDados.setVisible(false);
-                            accion=4;
                         }
                     }
+                    tab[i][j].repaint();
                 }
             }
         }else{
@@ -260,7 +245,16 @@ public class VentanaJuego extends javax.swing.JFrame {
         }
     }
     
+    public void Auxiliares(int y, int x){
+        this.auxX=x;
+        this.auxY=y;
+        ButtonAceptar.setVisible(true);
+        jButtonDados.setVisible(false);
+        
+    }
+    
     public void AccionCasilla(){
+        MoverFicha(tab[auxY][auxX].Accion());
         
     }
 
@@ -317,6 +311,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         jScrollPane2.setViewportView(LabelInfo);
 
         ButtonAceptar.setText("Aceptar");
+        ButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelInfoLayout = new javax.swing.GroupLayout(jPanelInfo);
         jPanelInfo.setLayout(jPanelInfoLayout);
@@ -429,6 +428,12 @@ public class VentanaJuego extends javax.swing.JFrame {
         
         turno=0;
     }//GEN-LAST:event_ReiniciarActionPerformed
+
+    private void ButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAceptarActionPerformed
+        ButtonAceptar.setVisible(false);
+        jButtonDados.setVisible(true);
+        AccionCasilla();
+    }//GEN-LAST:event_ButtonAceptarActionPerformed
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAceptar;
