@@ -51,7 +51,7 @@ public class NuevoJuego {
     }
    // se definen los jugadores que entraran al juego
     public static void definirJugadoresPartida(String nickname){
-       for (int i = 0; i < cantidadJugadores; i++) {
+        for (int i = 0; i < cantidadJugadores; i++) {
            if (nombre(i).equalsIgnoreCase(nickname)) {
                juego.CrearArreglo(var.Jugador(i));
                contador++;

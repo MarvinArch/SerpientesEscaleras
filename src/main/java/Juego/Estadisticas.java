@@ -58,7 +58,7 @@ public class Estadisticas extends javax.swing.JFrame {
         ganadas[conta].setBounds(240, posY, 75, 20);
         perdidas[conta].setBounds(320, posY, 75, 20);
         jugadas[conta].setBounds(400, posY, 75, 20);
-        tiempo[conta].setBounds(470, posY, 50, 20);
+        tiempo[conta].setBounds(470, posY, 75, 20);
         nikcname[conta].setText(lnickname);
         nombre[conta].setText(lnombre);
         ganadas[conta].setText(""+lganadas);

@@ -38,16 +38,16 @@ public class JugadoresPartida extends javax.swing.JDialog {
 
         Panelfondo = new javax.swing.JPanel();
         Escoger = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonIniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         Escoger.setText("Escoger Jugadores ");
 
-        jButton1.setText("Iniciar");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+        jButtonIniciar.setText("Iniciar");
+        jButtonIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarActionPerformed(evt);
             }
         });
 
@@ -56,22 +56,21 @@ public class JugadoresPartida extends javax.swing.JDialog {
         PanelfondoLayout.setHorizontalGroup(
             PanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelfondoLayout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addGroup(PanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfondoLayout.createSequentialGroup()
-                        .addComponent(Escoger)
-                        .addGap(164, 164, 164))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfondoLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(188, 188, 188))))
+                .addGap(166, 166, 166)
+                .addComponent(Escoger)
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelfondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonIniciar)
+                .addGap(197, 197, 197))
         );
         PanelfondoLayout.setVerticalGroup(
             PanelfondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelfondoLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(25, 25, 25)
                 .addComponent(Escoger)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 326, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
+                .addComponent(jButtonIniciar)
                 .addContainerGap())
         );
 
@@ -95,7 +94,7 @@ public class JugadoresPartida extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButtonIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarActionPerformed
         // TODO add your handling code here:
         NuevoJuego.IniciarVentana();
         for (int i = 0; i < cantidadJugadores; i++) {
@@ -103,8 +102,7 @@ public class JugadoresPartida extends javax.swing.JDialog {
         }
         NuevoJuego.DibujarTablero();
         dispose();
-        
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_jButtonIniciarActionPerformed
     
     public void CrearComboBox(int cantidad){
         for (int i = 0; i < cantidad; i++) {
@@ -145,6 +143,6 @@ public class JugadoresPartida extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Escoger;
     private javax.swing.JPanel Panelfondo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonIniciar;
     // End of variables declaration//GEN-END:variables
 }
